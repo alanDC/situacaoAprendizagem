@@ -1,0 +1,18 @@
+/* 
+    Created on : 20/10/2014, 16:02:24
+    Author     : Alan Dalcastagne
+    Exemplo Didático da Utilização de Media Queries
+*/
+
+@media screen and (orientation: portrait){
+    /*Modo Retrato - Vertical*/
+    .horizontal{display: none;}
+    .vertical{display: block;}
+}
+
+@media screen and (orientation: landscape){
+    /*Modo Paisagem - Horizontal*/
+    .horizontal{display: block;}
+    .vertical{display: none;}
+}
+
