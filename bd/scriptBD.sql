@@ -14,6 +14,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`usuario` (
   `email` VARCHAR(45) NOT NULL ,
   `idade` INT NOT NULL ,
   `foto` VARCHAR(45) NULL ,
+  `senha` VARCHAR(45) NULL ,
   PRIMARY KEY (`idusuario`) ,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) )
 ENGINE = InnoDB;
@@ -25,12 +26,13 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `mydb`.`artigo` (
   `idartigo` INT NOT NULL AUTO_INCREMENT ,
   `titulo` VARCHAR(45) NOT NULL ,
-  `conteudo` VARCHAR(45) NOT NULL ,
+  `conteudo` TEXT NOT NULL ,
+  `data` DATETIME NULL ,
   `usuario_idusuario` INT NOT NULL ,
   PRIMARY KEY (`idartigo`) ,
   UNIQUE INDEX `titulo_UNIQUE` (`titulo` ASC) ,
-  INDEX `fk_artigo_usuario` (`usuario_idusuario` ASC) ,
-  CONSTRAINT `fk_artigo_usuario`
+  INDEX `fk_artigo_usuario1` (`usuario_idusuario` ASC) ,
+  CONSTRAINT `fk_artigo_usuario1`
     FOREIGN KEY (`usuario_idusuario` )
     REFERENCES `mydb`.`usuario` (`idusuario` )
     ON DELETE NO ACTION
@@ -56,28 +58,12 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`comentario`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `mydb`.`comentario` (
-  `idcomentario` INT NOT NULL ,
-  `data` DATETIME NULL ,
-  `usuario_idusuario` INT NOT NULL ,
-  PRIMARY KEY (`idcomentario`) ,
-  INDEX `fk_comentario_usuario1` (`usuario_idusuario` ASC) ,
-  CONSTRAINT `fk_comentario_usuario1`
-    FOREIGN KEY (`usuario_idusuario` )
-    REFERENCES `mydb`.`usuario` (`idusuario` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `mydb`.`categoria`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `mydb`.`categoria` (
   `idcategoria` INT NOT NULL AUTO_INCREMENT ,
   `tema` VARCHAR(45) NOT NULL ,
+  `descricao` VARCHAR(100) NULL ,
   PRIMARY KEY (`idcategoria`) )
 ENGINE = InnoDB;
 
@@ -97,6 +83,29 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`categoria_has_artigo` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_categoria_has_artigo_artigo1`
+    FOREIGN KEY (`artigo_idartigo` )
+    REFERENCES `mydb`.`artigo` (`idartigo` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`comentario`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `mydb`.`comentario` (
+  `usuario_idusuario` INT NOT NULL ,
+  `artigo_idartigo` INT NOT NULL ,
+  `corpo` TEXT NULL ,
+  `data` DATETIME NULL ,
+  INDEX `fk_usuario_has_artigo_artigo1` (`artigo_idartigo` ASC) ,
+  INDEX `fk_usuario_has_artigo_usuario1` (`usuario_idusuario` ASC) ,
+  CONSTRAINT `fk_usuario_has_artigo_usuario1`
+    FOREIGN KEY (`usuario_idusuario` )
+    REFERENCES `mydb`.`usuario` (`idusuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuario_has_artigo_artigo1`
     FOREIGN KEY (`artigo_idartigo` )
     REFERENCES `mydb`.`artigo` (`idartigo` )
     ON DELETE NO ACTION
