@@ -1,3 +1,6 @@
+use sitap;
+select * from usuario;
+
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
@@ -11,10 +14,10 @@ USE `sitap` ;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sitap`;
-INSERT INTO `sitap`.`usuario` (`idusuario`, `nome`, `email`, `idade`, `foto`, `senha`) VALUES (2, 'Utriusque coloris', 'Utriusque@hotmail.com', 17, 'http://lorempixel.com/output/people-q-c-360-360-1.jpg', 'utriusque123');
-INSERT INTO `sitap`.`usuario` (`idusuario`, `nome`, `email`, `idade`, `foto`, `senha`) VALUES (0, 'Anônimo', 'anonimo@anonimo.com.br', NULL, NULL, NULL);
-INSERT INTO `sitap`.`usuario` (`idusuario`, `nome`, `email`, `idade`, `foto`, `senha`) VALUES (1, 'Admin', 'Admin@admin.com.br', NULL, NULL, 'admin123');
-INSERT INTO `sitap`.`usuario` (`idusuario`, `nome`, `email`, `idade`, `foto`, `senha`) VALUES (3, 'Serafim do Pulmão', 'serafim@gmail.com', 63, 'http://lorempixel.com/output/people-q-c-360-360-3.jpg', 'serafim123');
+INSERT INTO `sitap`.`usuario` (`idusuario`, `nome`, `email`, `idade`, `foto`, `senha`) VALUES (2, 'Utriusque coloris', 'Utriusque@hotmail.com', 17, '', 'utriusque123');
+INSERT INTO `sitap`.`usuario` (`idusuario`, `nome`, `email`, `idade`, `foto`, `senha`) VALUES (0, 'Anônimo', 'anonimo@anonimo.com.br', 23, NULL, NULL);
+INSERT INTO `sitap`.`usuario` (`idusuario`, `nome`, `email`, `idade`, `foto`, `senha`) VALUES (1, 'Admin', 'Admin@admin.com.br', 45, NULL, 'admin123');
+INSERT INTO `sitap`.`usuario` (`idusuario`, `nome`, `email`, `idade`, `foto`, `senha`) VALUES (4, 'Serafim do Pulmão', 'serafim@gmail.com', 63, '', 'serafim123');
 
 COMMIT;
 
@@ -45,8 +48,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sitap`;
-INSERT INTO `sitap`.`categoria` (`idcategoria`, `tema`, `descricao`) VALUES (1, 'Pizza', 'Categoria que fala sobre pizzas');
-INSERT INTO `sitap`.`categoria` (`idcategoria`, `tema`, `descricao`) VALUES (2, 'Bacon', 'Categoria que fala sobre Bacon');
+INSERT INTO `sitap`.`categoria` (`idcategoria`, `categoria`, `descricao`) VALUES (1, 'Pizza', 'Categoria que fala sobre pizzas');
+INSERT INTO `sitap`.`categoria` (`idcategoria`, `categoria`, `descricao`) VALUES (3, 'Bacon', 'Categoria que fala sobre Bacon');
 
 COMMIT;
 

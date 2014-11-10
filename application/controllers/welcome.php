@@ -21,7 +21,9 @@ class Welcome extends CI_Controller {
      * @see http://codeigniter.com/user_guide/general/urls.html
      */
     public function index() {
-        $this->load->view('home');
+        $this->load->view('home_header');
+        $this->load->view('home_content');
+        $this->load->view('home_sidebar');
     }
 
     public function info() {
