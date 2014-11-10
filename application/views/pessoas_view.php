@@ -3,7 +3,7 @@
     <head>
         <title><?php echo $titulo; ?></title>
         <meta charset="UTF-8" />
-        <link type=”text/css” rel=”stylesheet” href=”<?php echo base_url(); ?>ci_crud/assets/css/estilo.css”/>
+        <link type=”text/css” rel=”stylesheet” href=”<?php echo base_url(); ?>/assets/css/estilo.css”/>
     </head>
     <body>
         <?php echo form_open('pessoas/inserir', 'id="form-pessoas"'); ?>
