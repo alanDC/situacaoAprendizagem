@@ -1,4 +1,4 @@
-            <!-- Sidebar -->
+l            <!-- Sidebar -->
             <div id="sidebar">
 
                 <!-- Logo -->
@@ -7,7 +7,7 @@
                 <!-- Nav -->
                 <nav id="nav">
                     <ul>
-                        <li class="current"><a href="#">Latest Post</a></li>
+                        <li class="current"><a href="<?php echo base_url('login'); ?>">Entrar no Sistema</a></li>
                         <li><a href="<?php echo base_url('pessoas'); ?>">Cadastro de Usuário</a></li>
                         <li><a href="#">About Me</a></li>
                         <li><a href="#">Contact Me</a></li>

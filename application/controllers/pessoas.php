@@ -25,6 +25,7 @@ class Pessoas extends CI_Controller {
 
         /* Carrega a biblioteca do CodeIgniter responsável pela validação dos formulários */
         $this->load->library('form_validation');
+        $this->load->library('image_lib');
 
         /* Define as tags onde a mensagem de erro será exibida na página */
         $this->form_validation->set_error_delimiters('<span>', '</span>');
@@ -73,7 +74,7 @@ class Pessoas extends CI_Controller {
 
         /* Carrega a página de edição com os dados da pessoa */
         $this->load->view('home_header');
-        $this->load->view('home_content_usuario', $data);
+        $this->load->view('home_content_usuario_edit', $data);
         $this->load->view('home_sidebar');
     }
 
