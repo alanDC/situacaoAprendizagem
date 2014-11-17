@@ -10,6 +10,7 @@ class Pessoas_model extends CI_Model {
     }
 
     function inserir($data) {
+       
         return $this->db->insert('usuario', $data);
     }
 

@@ -64,15 +64,21 @@
 
         <?php echo form_close(); ?>
 
-        <div id="grid-pessoas">
+       <div id="grid-pessoas">
             <ul>
                 <?php foreach ($pessoas as $pessoa): ?>
                     <li>
-                        <a title="Deletar" href="<?php echo base_url() . 'pessoas/deletar/' . $pessoa->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"> X </a>
+                        <a title="Deletar" href="<?php echo base_url() . 'pessoas/deletar/' . $pessoa->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')">
+                        <img src="<?php echo base_url(); ?>assets/img/delete.png" />
+                        </a>
                         <span> - </span>
                         <a title="Editar" href="<?php echo base_url() . 'pessoas/editar/' . $pessoa->idusuario; ?>"><?php echo $pessoa->nome; ?></a>
-                        <span> - </span>
+                        <span> - </span> 
                         <span><?php echo $pessoa->email; ?></span>
+                        <span> - </span> 
+                        <span> - </span>
+                        <span> <img src="<?php echo $pessoa->foto; ?>" />
+                        </span>                              
                     </li>
                 <?php endforeach ?>
             </ul>

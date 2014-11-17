@@ -34,13 +34,30 @@
 
         <div id="grid-pessoas">
             <ul>
-                <?php foreach ($pessoas as $pessoa): ?>
+                <?php foreach ($usuarios as $usuario): ?>
                     <li>
-                        <a title="Deletar" href="<?php echo base_url() . 'pessoas/deletar/' . $pessoa->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"> X </a>
+                        <a title="Deletar" href="<?php echo base_url() . 'pessoas/deletar/' . $usuario->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')">
+                        <img src="<?php echo base_url(); ?>assets/images/lixo.png" />
+                        </a>
                         <span> - </span>
-                        <a title="Editar" href="<?php echo base_url() . 'pessoas/editar/' . $pessoa->idusuario; ?>"><?php echo $pessoa->nome; ?></a>
+                        <a title="Editar" href="<?php echo base_url() . 'pessoas/editar/' . $usuario->idusuario; ?>"><?php echo $usuario->nome; ?></a>
                         <span> - </span>
-                        <span><?php echo $pessoa->email; ?></span>
+                        <span><?php echo $usuario->email; ?></span>
+                        <span> - </span>
+                        <span><?php echo $usuario->senha; ?></span>
+                        <span> - </span>
+                        <span><?php echo $usuario->sexo; ?></span>
+                        <span> - </span>
+                        <span><?php echo $usuario->cidade; ?></span>
+                        <span> - </span>
+                        <span><?php echo $usuario->estado; ?></span>
+                        <span> - </span>
+                        <span><?php echo $usuario->endereco; ?></span>
+                        <span> - </span>
+                        <span><?php echo $usuario->cep; ?></span>
+                        <span> - </span>
+                        <span> <img src="<?php echo base_url(); ?>assets/images/<?php echo $usuario->foto; ?>" />
+                        </span>                        
                     </li>
                 <?php endforeach ?>
             </ul>

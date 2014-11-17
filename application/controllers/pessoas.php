@@ -160,10 +160,3 @@ class Pessoas extends CI_Controller {
 
 }
 
-//Código retirado de: "http://phpdojo.com.br/php/crud-completo-com-codeigniter-parte-ii/"
-/*
- * – O nome da classe deve ser igual ao nome do arquivo e iniciar com letra maiúscula.
- * – A função index será executada por padrão caso não tenha sido informado nenhuma outra função na URL da aplicação (veremos isso em breve).
- * – O array $data armazena o título, observe o índice com o mesmo nome, e será recuperado posteriormente na visão.
- * – No método $this->load->view(‘pessoas_view.php’, $data), passamos dois parâmetros, a visão que iremos carregar e o array que contém as informações.
- */
