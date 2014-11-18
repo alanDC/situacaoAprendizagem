@@ -3,59 +3,54 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Artigos extends CI_Controller {
+class Artigo extends CI_Controller {
 
     function __construct() {
         parent::__construct();
         /* Carrega o modelo */
-        $this->load->model('artigos_model');
+        $this->load->helper('form');
+        $this->load->model('artigo_model');
     }
 
     function index() {
-    //      $data['titulo'] = "CRUD com CodeIgniter | Cadastro de Pessoas";
-            $data['artigos'] = $this->artigos_model->listar();
-    //      $this->load->view('pessoas_view.php', $data);
-
+        $data['titulo'] = "";
+        $this->load->helper('form');
+        $data['artigo'] = $this->artigo_model->listar();
         $this->load->view('home_header');
-        $this->load->view('artigos_view', $data);
         $this->load->view('home_sidebar');
+        $this->load->view('artigo_view.php', $data);
     }
 
     function inserir() {
 
         /* Carrega a biblioteca do CodeIgniter responsável pela validação dos formulários */
         $this->load->library('form_validation');
-     ;
 
         /* Define as tags onde a mensagem de erro será exibida na página */
         $this->form_validation->set_error_delimiters('<span>', '</span>');
 
         /* Define as regras para validação */
-        $this->form_validation->set_rules('titulo', 'Titulo', 'required|max_length[40]');
+        $this->form_validation->set_rules('titulo', 'Título', '');
         $this->form_validation->set_rules('conteudo', 'Conteudo', '');
-        $this->form_validation->set_rules('data', 'Data', '');
+    
         
-        
-
-
+       
         /* Executa a validação e caso houver erro... */
         if ($this->form_validation->run() === FALSE) {
             /* Chama a função index do controlador */
             $this->index();
             /* Senão, caso sucesso na validação... */
         } else {
-
             /* Recebe os dados do formulário (visão) */
             $data['titulo'] = $this->input->post('titulo');
             $data['conteudo'] = $this->input->post('conteudo');
             $data['data'] = $this->input->post('data');
-          
 
             /* Chama a função inserir do modelo */
-            if ($this->artigos_model->inserir($data)) {
-                redirect('artigo');
+            if ($this->artigo_model->inserir($data)) {
+                header('location: artigo');
             } else {
-                log_message('error', 'Erro ao inserir a pessoa.');
+                log_message('error', 'Erro ao inserir o artigo.');
             }
         }
     }
@@ -63,22 +58,20 @@ class Artigos extends CI_Controller {
     function editar($id) {
 
         /* Aqui vamos definir o título da página de edição */
-        $data['titulo'] = "Adicionar um artigo";
+        $data['titulo'] = "CRUD com CodeIgniter | Editar Artigo";
 
         /* Carrega o modelo */
-        $this->load->model('artigos_model');
+        $this->load->model('artigo_model');
 
         /* Busca os dados da pessoa que será editada (id) */
-        $data['dados_artigo'] = $this->artigos_model->editar($id);
-
-        /* Carrega a página de edição com os dados da pessoa */
+        $data['dados_artigo'] = $this->artigo_model->editar($id);
         $this->load->view('home_header');
-        $this->load->view('artigo_view_edit', $data);
         $this->load->view('home_sidebar');
+        /* Carrega a página de edição com os dados da pessoa */
+        $this->load->view('artigo_edit', $data);
     }
 
     function atualizar() {
-
         /* Carrega a biblioteca do CodeIgniter responsável pela validação dos formulários */
         $this->load->library('form_validation');
 
@@ -90,22 +83,23 @@ class Artigos extends CI_Controller {
         $validations = array(
             array(
                 'field' => 'titulo',
-                'label' => 'Titulo',
-                'rules' => 'trim|required|max_length[40]'
+                'label' => 'Título',
+                'rules' => ''
             ),
             array(
                 'field' => 'conteudo',
                 'label' => 'Conteudo',
-                'rules' => 'trim|required|valid_email|max_length[100]'
-            ),
-            array(
+                'rules' => ''
+            ),array(
                 'field' => 'data',
                 'label' => 'Data',
                 'rules' => ''
-            ),
-           
+            )
         );
         $this->form_validation->set_rules($validations);
+        
+        
+
 
         /* Executa a validação... */
         if ($this->form_validation->run() === FALSE) {
@@ -115,19 +109,23 @@ class Artigos extends CI_Controller {
             /* Senão obtém os dados do formulário */
             $data['idartigo'] = $this->input->post('idartigo');
             $data['titulo'] = ucwords($this->input->post('titulo'));
-            $data['conteudo'] = strtolower($this->input->post('conteudo'));
-            $data['data'] = strtolower($this->input->post('data'));
-           
+            $data['conteudo'] = ucwords($this->input->post('conteudo'));
+             $data['data'] = ucwords($this->input->post('data'));
+            
+            
             /* Carrega o modelo */
-            $this->load->model('artigos_model');
+            $this->load->model('artigo_model');
 
             /* Executa a função atualizar do modelo passando como parâmetro os dados obtidos do formulário */
-            if ($this->artigos_model->atualizar($data)) {
+            if ($this->artigo_model->atualizar($data)) {
                 /* Caso sucesso ao atualizar, recarrega a página principal */
+               
+                
+               
                 redirect('artigo');
             } else {
                 /* Senão exibe a mensagem de erro */
-                log_message('error', 'Erro ao atualizar a pessoa.');
+                log_message('error', 'Erro ao atualizar o artigo.');
             }
         }
     }
@@ -135,12 +133,12 @@ class Artigos extends CI_Controller {
     function deletar($id) {
 
         /* Carrega o modelo */
-        $this->load->model('artigos_model');
+        $this->load->model('artigo_model');
 
         /* Executa a função deletar do modelo passando como parâmetro o id da pessoa */
-        if ($this->artigos_model->deletar($id)) {
+        if ($this->artigo_model->deletar($id)) {
             /* Caso sucesso ao atualizar, recarrega a página principal */
-            redirect('artigos');
+            redirect('artigo');
         } else {
             /* Senão exibe a mensagem de erro */
             log_message('error', 'Erro ao deletar o artigo.');
@@ -148,6 +146,3 @@ class Artigos extends CI_Controller {
     }
 
 }
-
-
-
