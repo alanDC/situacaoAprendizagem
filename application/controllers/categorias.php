@@ -14,6 +14,8 @@ class Categorias extends CI_Controller {
     function index() {
         $data['titulo'] = "CRUD com CodeIgniter | Cadastro de Categorias";
         $data['categorias'] = $this->categorias_model->listar();
+        $this->load->view('home_header');
+        $this->load->view('home_sidebar');
         $this->load->view('categorias_view.php', $data);
     }
 

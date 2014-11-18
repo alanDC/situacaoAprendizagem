@@ -38,5 +38,14 @@ class Artigo_model extends CI_Model {
         $this->db->where('idartigo', $id);
         return $this->db->delete('artigo');
     }
+    
+    function logged() {
+        $logged = $this->session->userdata('logged');
+
+        if (!isset($logged) || $logged != true) {
+            echo 'Voce nao tem permissao para entrar nessa pagina. <a href="http://127.0.0.1/situacaoAprendizagem/login">Efetuar Login</a>';
+            die();
+        }
+    }
 
 }

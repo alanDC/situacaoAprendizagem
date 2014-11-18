@@ -42,6 +42,10 @@
             <label for="corpo">Conteudo:</label><br/>
             <textarea name="conteudo" rows="30" value="<?php echo set_value('conteudo'); ?>"></textarea>
             <div class="error"><?php echo form_error('conteudo'); ?></div>
+
+            <label for="usuario_idusuario">Id do usuário:</label><br/>
+            <input type="number" name="usuario_idusuario" value="<?php echo set_value('usuario_idusuario'); ?>"/>
+            <div class="error"><?php echo form_error('usuario_idusuario'); ?></div>
             <br>
             <input type="text" hidden name="data" disabled value="<?php
             date_default_timezone_set('America/Sao_Paulo');
@@ -57,7 +61,7 @@
             <!-- Lista as Pessoas Cadastradas -->
             <div id="grid-artigo">
                 <ul>
-<?php foreach ($artigo as $artigo): ?>
+                    <?php foreach ($artigo as $artigo): ?>
                         <li>
                             <a title="Deletar" href="<?php echo base_url() . 'artigo/deletar/' . $artigo->idartigo; ?>" onclick="return confirm('Confirma a exclusão deste registro?')">X</a>
                             <span> - </span>
@@ -65,11 +69,11 @@
 
 
                         </li>
-<?php endforeach ?>
+                    <?php endforeach ?>
                 </ul>
             </div>
             <!-- Fim Lista -->
 
-<?php ?>
+            <?php ?>
     </div>
 </div>

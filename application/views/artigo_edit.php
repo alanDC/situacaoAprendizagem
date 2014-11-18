@@ -44,6 +44,11 @@
         <!--<input type="text" name="corpo" value=?php echo $dados_artigo[0]->corpo; ?>/>-->
         <textarea name="conteudo" rows="30"><?php echo $dados_artigo[0]->conteudo; ?></textarea>
         <div class="error"><?php echo form_error('conteudo'); ?></div>
+        
+        
+          <label for="usuario_idusuario">Id do usuário:</label><br/>
+            <input type="number" name="usuario_idusuario" value="<?php echo set_value('usuario_idusuario'); ?>"/>
+            <div class="error"><?php echo form_error('usuario_idusuario'); ?></div>
         <input type="text" hidden name="data"  value="<?php date_default_timezone_set('America/Sao_Paulo');  $date = date('Y/m/d H:i:s'); echo $date; ?>"/>
         
         <input type="submit" name="atualizar"  value="Atualizar" />

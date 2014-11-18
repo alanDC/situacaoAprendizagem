@@ -32,6 +32,7 @@ class Artigo extends CI_Controller {
         /* Define as regras para validação */
         $this->form_validation->set_rules('titulo', 'Título', '');
         $this->form_validation->set_rules('conteudo', 'Conteudo', '');
+        $this->form_validation->set_rules('usuario_idusuario', 'Usuario_idusuario', '');
     
         
        
@@ -45,6 +46,7 @@ class Artigo extends CI_Controller {
             $data['titulo'] = $this->input->post('titulo');
             $data['conteudo'] = $this->input->post('conteudo');
             $data['data'] = $this->input->post('data');
+            $data['usuario_idusuario'] = $this->input->post('usuario_idusuario'); 
 
             /* Chama a função inserir do modelo */
             if ($this->artigo_model->inserir($data)) {
@@ -93,6 +95,10 @@ class Artigo extends CI_Controller {
             ),array(
                 'field' => 'data',
                 'label' => 'Data',
+                'rules' => ''            
+            ),array(
+                'field' => 'usuario_idusuario',
+                'label' => 'Usuario_idusuario',
                 'rules' => ''
             )
         );
@@ -110,7 +116,8 @@ class Artigo extends CI_Controller {
             $data['idartigo'] = $this->input->post('idartigo');
             $data['titulo'] = ucwords($this->input->post('titulo'));
             $data['conteudo'] = ucwords($this->input->post('conteudo'));
-             $data['data'] = ucwords($this->input->post('data'));
+            $data['data'] = ucwords($this->input->post('data'));
+            $data['usuario_idusuario'] = ucwords($this->input->post('usuario_idusuario'));
             
             
             /* Carrega o modelo */
