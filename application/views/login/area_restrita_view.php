@@ -10,6 +10,7 @@
                         need a subtitle.
                 -->
                 <h2><a href="login">Area Restrita!</a></h2>
+                <p><a href="<?= base_url('login/login/sair') ?>">Sair</a></p>
                 <!--<p>A free, fully responsive HTML5 site template by HTML5 UP</p>-->
             </header>
             <div class="info">

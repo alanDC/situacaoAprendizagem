@@ -42,5 +42,14 @@ class Login extends CI_Controller {
             }
         }
     }
-
+    
+      function sair(){
+        $this->session->unset_userdata('logado');
+        $this->session->unset_userdata('email');
+        $this->session->sess_destroy();
+        redirect(base_url('login'));
+    }
 }
+
+
+
