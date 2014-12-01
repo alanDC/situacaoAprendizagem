@@ -32,6 +32,14 @@ class Pessoas_model extends CI_Model {
     }
 
     function deletar($id) {
+        
+        $busca = $this->editar($id);
+        $caminho = "c:/xampp/htdocs/situacaoAprendizagem/assets/images/";
+        $arquivo = $caminho . $busca[0]->foto;
+        echo $busca[0]->foto;die();
+        if(is_file($arquivo)) unlink ($arquivo);
+            
+        
         $this->db->where('idusuario', $id);
         return $this->db->delete('usuario');
     }
